@@ -1,0 +1,30 @@
+version: '3.5'
+services:
+  vtiger:
+    image: adiandev/vtiger
+    environment:
+      DB_HOSTNAME: db
+      DB_NAME: vtiger
+      DB_USERNAME: vtiger
+      DB_PASSWORD: 1234
+    ports:
+      - "8080:80"
+    volumes:
+      - "vtigervol:/var/www/html"
+    links:
+      - db
+  db:
+    image: mysql
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "true"
+      MYSQL_DATABASE: vtiger
+      MYSQL_USER: vtiger
+      MYSQL_PASSWORD: 1234
+    volumes:
+      - "${MYSQL_CONF_FOLDER}:/etc/mysql/conf.d"
+      - "dbvol:/var/lib/mysql"
+
+volumes:
+  dbvol:
+  vtigervol:
+
