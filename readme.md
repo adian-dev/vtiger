@@ -72,3 +72,16 @@ Then, vtiger will be running on [http://localhost:8080](http://localhost:8080).
 + DB_USERNAME (Required): Database user.
 + DB_PASSWORD (Required): Database user password.
 
+## Behind reverse proxy
+
+If this container is running behind a reverse proxy that puts https over the connection you must
+add a special config to your reverse proxy in order to have a working connection.
+
+The proxy must set the header "Referer" to a http url, example:
+
+```
+Referer="http://vtiger.example.com"
+```
+
+This solution es thanks to mikydevel at: [https://discussions.vtiger.com/discussion/189604/vtiger-behind-reverse-proxy]().
+
